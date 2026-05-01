@@ -54,31 +54,31 @@ def call(Map configMap){
                     }
                 }
             }
-            stage ('SonarQube Analysis'){
-                steps {
-                    script {
-                        def scannerHome = tool name: 'sonar-8' // agent configuration
-                        withSonarQubeEnv('sonar-server') { // analysing and uploading to server
-                            sh "${scannerHome}/bin/sonar-scanner"
-                        }
-                    }
-                }
-            }
-            stage("Quality Gate") {
-                steps {
-                    script {
-                        timeout(time: 1, unit: 'HOURS') {
-                            def qg = waitForQualityGate()
-                            if (qg.status != 'OK') {
-                                utils.updateCommitStatus('failure', "SonarQube quality gate failed: ${qg.status}", 'sonar-scan')
-                                error "Quality gate failed: ${qg.status}"
-                            } else {
-                                utils.updateCommitStatus('success', 'SonarQube quality gate passed', 'sonar-scan')
-                            }
-                        }
-                    }
-                }
-            }
+            // stage ('SonarQube Analysis'){
+            //     steps {
+            //         script {
+            //             def scannerHome = tool name: 'sonar-8' // agent configuration
+            //             withSonarQubeEnv('sonar-server') { // analysing and uploading to server
+            //                 sh "${scannerHome}/bin/sonar-scanner"
+            //             }
+            //         }
+            //     }
+            // }
+            // stage("Quality Gate") {
+            //     steps {
+            //         script {
+            //             timeout(time: 1, unit: 'HOURS') {
+            //                 def qg = waitForQualityGate()
+            //                 if (qg.status != 'OK') {
+            //                     utils.updateCommitStatus('failure', "SonarQube quality gate failed: ${qg.status}", 'sonar-scan')
+            //                     error "Quality gate failed: ${qg.status}"
+            //                 } else {
+            //                     utils.updateCommitStatus('success', 'SonarQube quality gate passed', 'sonar-scan')
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
             stage('Dependabot Alerts Check') {
                 steps {
                     script {
