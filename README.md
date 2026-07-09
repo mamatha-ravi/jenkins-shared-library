@@ -107,7 +107,6 @@ Jenkins · Groovy · Docker · AWS ECR · Helm · Kubernetes · Trivy · SonarQu
 | Repo | Description |
 |------|-------------|
 | [terraform-aws-eks](https://github.com/mamatha-ravi/terraform-aws-eks) | EKS cluster this pipeline deploys to |
-| [roboshop-infra-dev](https://github.com/mamatha-ravi/roboshop-infra-dev) | Full RoboShop AWS infrastructure |
 | [catalogue-unit-tests](https://github.com/mamatha-ravi/catalogue-unit-tests) | Example service using this library |
  
 ---
